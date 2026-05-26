@@ -5,7 +5,7 @@ import com.pedrohbertoni.model.*;
 
 public class JogoDaVelhaController {
     private Tabuleiro tabuleiro = new Tabuleiro();
-    private JogoDaVelhaView view = new JogoDaVelhaView();
+    private JogoDaVelhaView view;
     private Jogador jogador1;
     private Jogador jogador2;
     private int jogadorAtual = 1;
@@ -18,16 +18,16 @@ public class JogoDaVelhaController {
         
         try {
             if (view.jogadaValida(linha, coluna)) {
-                tabuleiro.registraJogada(Simbolo.X, linha, coluna);
+                if (jogadorAtual == 1) {
+                    tabuleiro.registraJogada(Simbolo.X, linha, coluna);
+                } else {
+                    tabuleiro.registraJogada(Simbolo.O, linha, coluna);
+                }
+                jogadorAtual = (jogadorAtual - 3) * (-1); // Calculo foda pra troca
             }
         } catch (Exception e) {
-                System.out.println("Erro: " + e.getMessage());
+                System.out.println("\nErro: " + e.getMessage());
         }
-            
-    }
-
-    public void alternarJogador() {
-        jogadorAtual = (jogadorAtual - 3) * -1; // Calculo foda pra troca
     }
 
     public String verificarEncerramento() {
@@ -37,7 +37,7 @@ public class JogoDaVelhaController {
         } else if(tabuleiro.verificarVitoria(Simbolo.O)) {
             status = StatusPartida.VITORIA;
             return jogador2.getNome();
-        } else if(tabuleiro.verificarVitoria(Simbolo.X)) {
+        } else if(tabuleiro.verificarEmpate()) {
             status = StatusPartida.EMPATE;
         }
         return "";
@@ -60,6 +60,8 @@ public class JogoDaVelhaController {
         return jogadorAtual; }
 
     public Tabuleiro getTabuleiro() {
-        return tabuleiro;
-    }
+        return tabuleiro; }
+
+    public void setView(JogoDaVelhaView view) {
+        this.view = view; }
 }

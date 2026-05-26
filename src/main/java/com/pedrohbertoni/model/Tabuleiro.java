@@ -48,7 +48,7 @@ public class Tabuleiro {
     }
 
 
-    public boolean verificaEmpate(){
+    public boolean verificarEmpate(){
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
                 if(matriz[i][j] != Simbolo.X && matriz[i][j] != Simbolo.O){
@@ -69,12 +69,4 @@ public class Tabuleiro {
         }
     }
 
-    public void exibe(){
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 3; j++){
-                System.out.println(matriz[i][j] + " | ");
-                }
-            System.out.println("\n");
-            }
-        }
 }
