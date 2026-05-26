@@ -7,11 +7,9 @@ public class Tabuleiro {
     public Simbolo[][] getMatriz() {
         return matriz;
     }
-
     public void setMatriz(Simbolo[][] matriz) {
         this.matriz = matriz;
     } 
-
     public Tabuleiro() {
         matriz = new Simbolo[3][3];
     }
@@ -65,14 +63,6 @@ public class Tabuleiro {
     public void registraJogada(Simbolo simbolo, int linha, int coluna){
         if(verificaPosicao(linha, coluna)){
                 matriz[linha][coluna] = simbolo;
-
-            if(verificarVitoria(simbolo)){
-                System.out.println("Terminou! Vitória do jogador");
-            }
-            else if(verificaEmpate()){
-                System.out.println("Deu empate cambada");
-
-            }
         }
         else{
             System.out.println("Posição ocupada!");
@@ -80,13 +70,11 @@ public class Tabuleiro {
     }
 
     public void exibe(){
-         for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
                 System.out.println(matriz[i][j] + " | ");
                 }
             System.out.println("\n");
             }
         }
-    
-
 }
